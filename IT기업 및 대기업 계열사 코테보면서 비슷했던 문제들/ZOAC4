@@ -1,0 +1,27 @@
+'''
+구하고자 하는 것
+서로 바뀐 횟수를 구하자 
+-> 테스트 케이스의 수가 많지 않으므로 bubble_sort로도 충분 
+'''
+import sys
+
+input = sys.stdin.readline
+
+p = int(input())
+
+for _ in range(p):
+        data = list(map(int, input().split()))
+        
+        t_case_num = data[0]
+        heights = data[1:]
+        
+        total_steps = 0 
+        for i in range(20):
+            for j in range(i+1):
+                if heights[i] > heights[j]:
+                    heights[i], heights[j] = heights[j], heights[i]
+                    # 바뀔 때마다의 뒤의 가중치를 생각해서 변경 
+                    total_steps += 1 * (20-i-1)
+        
+        print(heights)
+        print(f"{t_case_num} {total_steps}")
